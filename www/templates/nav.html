@@ -1,0 +1,38 @@
+<header class="bar bar-header bar-royal">
+  <button class="button button-icon icon ion-android-hand" ng-click="logout()"></button>
+  <h1 class="title">Energies Balanced</h1>
+</header>
+
+<ion-content has-header='true' has-footer='true' padding="false" scroll='true'>
+  <div class="list">
+    <a ng-click="redirect('schedule')"
+       class="item item-thumbnail-left">
+      <img ng-src="img/schedule_icon.png">
+      <h2>Schedule</h2>
+    </a>
+     <a ng-click="redirect('media')"
+       class="item item-thumbnail-left">
+      <img ng-src="img/video_icon.png">
+      <h2>Media</h2>
+    </a>
+    <a ng-click="redirect('massage')"
+       class="item item-thumbnail-left">
+      <img ng-src="img/massage_icon.png">
+      <h2>Massage</h2>
+    </a>
+    <a ng-click="redirect('donate')"
+       class="item item-thumbnail-left">
+      <img ng-src="img/donage_icon.png">
+      <h2>Donate</h2>
+    </a>
+    <a ng-click="redirect('message')"
+       class="item item-thumbnail-left">
+      <img ng-src="img/message_icon.png">
+      <h2>Message</h2>
+    </a>
+  </div>
+</ion-content>
+
+<footer class="bar bar-footer bar-royal">
+  <div class="title">&#2384;</div>
+</footer>

@@ -1,0 +1,34 @@
+<!-- {
+"instructor": "Marissa",
+"location": "Clayworks Studio",
+"suggestedDonation": "10",
+"name": "Astanga",
+"time": null,
+"onceOnly": "on",
+"duration": "78",
+"style": "Iyengar",
+"participants": "",
+"_id": "52955007838f540200000001",
+"__v": 0
+} -->
+
+<header class="bar bar-header bar-royal">
+  <button class="button button-icon icon ion-android-hand" ng-click='logout()'></button>
+  <h1 class="title">Yoga Schedule</h1>
+</header>
+
+<ion-content has-header='true' has-footer='true' padding="false" scroll='true' on-refresh="refresh()">
+  <div class="list">
+    <a ng-repeat="yogaClass in classes" 
+       href="#"
+       class="item">
+      <h2>{{ yogaClass.style }} Yoga</h2>
+      <h4>taught by: {{ yogaClas.instructor }}</h4>
+      <h4>at: {{ yogaClass.location }}</h4>
+    </a>
+  </div>
+</ion-content>
+
+<footer class="bar bar-footer bar-royal">
+  <div class="title">&#2384;</div>
+</footer>
