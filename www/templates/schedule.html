@@ -20,11 +20,11 @@
 <ion-content has-header='true' has-footer='true' padding="false" scroll='true' on-refresh="refresh()">
   <div class="list">
     <a ng-repeat="yogaClass in classes" 
-       href="#"
+       ng-href="/class/{{ yogaClass._id }}"
        class="item">
       <h2>{{ yogaClass.style }} Yoga</h2>
-      <h4>taught by: {{ yogaClas.instructor }}</h4>
-      <h4>at: {{ yogaClass.location }}</h4>
+      <h4>taught by: {{ yogaClass.instructor }}</h4>
+      <h4>at: {{ yogaClass.location }}, {{ yogaClass.time }}</h4>
     </a>
   </div>
 </ion-content>
