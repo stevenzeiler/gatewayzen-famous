@@ -7,7 +7,7 @@ class EBMenuBackground extends View
   constructor: ->
     super
     background = new ImageSurface
-      content: 'images/menu_background.png'
+      content: 'images/menu_background.svg'
     backgroundModifier = new Modifier
       origin: [0.5, 0.5]
       align: [0.5, 0.5]
