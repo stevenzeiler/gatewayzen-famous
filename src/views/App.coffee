@@ -2,7 +2,7 @@ View = require 'famous/core/View'
 Surface = require 'famous/core/Surface'
 DrawerLayout = require '../famousInternal/DrawerLayout'
 TouchSync = require 'famous/inputs/TouchSync'
-EBMenu = require './EBMenu'
+EBMenu = require './MenuDrawer/EBMenu'
 EBContentView = require './EBContentView'
 
 ###*

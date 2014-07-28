@@ -7,7 +7,7 @@ Transitionable.registerMethod 'spring', SpringTransition
 
 # Create context and set Perspective
 mainContext = Engine.createContext()
-mainContext.setPerspective 1000
+mainContext.setPerspective 800
 
 # Add app to the mainContext
 App = require './views/App'

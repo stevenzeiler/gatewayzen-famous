@@ -1,18 +1,28 @@
 View = require './EBView'
 Surface = require 'famous/core/Surface'
+EBHeader = require './Header/EBHeader'
+HeaderFooterLayout = require 'famous/views/HeaderFooterLayout'
 
 class EBContentView extends View
   constructor: ->
     super
-    content = new Surface
+
+    layout = new HeaderFooterLayout @options.layout
+    # Add content Rednerable
+    layout.header = header = new EBHeader
+    layout.content = content = new Surface
       content: "Content"
       properties:
         backgroundColor: 'red'
-
-    @add content
+    @add layout
 
     # Rebroadcast touch events to DrawerLayout
-    content.pipe @
+    header.pipe @
     @pipeThrough ['touchstart', 'touchmove', 'touchend']
+
+EBContentView.DEFAULT_OPTIONS =
+  layout:
+    headerSize: 60
+    footerSize: 0
 
 module.exports = EBContentView

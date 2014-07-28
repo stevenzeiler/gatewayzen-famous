@@ -5,10 +5,7 @@ class EBView extends View
     super options
 
 EBView::pipeThrough = (events) ->
-  if Array.isArray events
-    @pipeThrough event for event in events
-  else
-    @_eventInput.on events, (e) =>
-      @_eventOutput.emit events, e
+  if Array.isArray events then @pipeThrough event for event in events
+  else @_eventInput.on events, (e) => @_eventOutput.emit events, e
 
 module.exports = EBView
