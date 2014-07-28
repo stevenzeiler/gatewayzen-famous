@@ -1,5 +1,11 @@
 language: node_js
 node_js:
  - "0.10"
+before_install:
+ - "curl http://dl.google.com/closure-compiler/compiler-latest.zip -o /tmp/"
+ - "unzip /tmp/compiler-latest.zip"
+ - "echo '#!/bin/sh\n java -jar /tmp/compiler-latest/compiler.jar' > /usr/local/bin/closure"
+ - "chmod -x /usr/local/bin/closure"
+ - "npm install -g browserify"
 before_script:
   npm run build
