@@ -17,8 +17,7 @@ class App extends View
     layout.drawer = drawer = new EBMenu
     layout.content = content = new EBContentView
 
-    sync = new TouchSync
-      direction: TouchSync.DIRECTION_X
+    sync = new TouchSync @options.sync
 
     content.pipe sync
     sync.pipe layout
@@ -34,6 +33,8 @@ App.DEFAULT_OPTIONS =
       method: "spring"
       period: 500
       dampingRatio: 0.6
+  sync:
+    direction: TouchSync.DIRECTION_X
 
 ###*
  * @exports App
