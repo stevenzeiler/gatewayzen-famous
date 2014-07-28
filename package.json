@@ -1,0 +1,29 @@
+{
+  "name": "browserify-seed",
+  "version": "0.2.2",
+  "description": "seed for a browserified version of famous",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm run lint -s",
+    "build": "browserify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs | closure > static/bundle.js",
+    "watch": "watchify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs -o static/bundle.js --debug --verbose",
+    "lint-eslint": "eslint src/",
+    "lint-jscs": "jscs src/",
+    "lint": "npm run lint-eslint; npm run lint-jscs"
+  },
+  "devDependencies": {
+    "eslint": "^0.6.2",
+    "jscs": "^1.5.7",
+    "watchify": "^0.10.2"
+  },
+  "author": "TheAlphaNerd",
+  "license": "ISC",
+  "dependencies": {
+    "brfs": "^1.1.1",
+    "coffee-script": "^1.7.1",
+    "coffeeify": "^0.7.0",
+    "cssify": "^0.5.1",
+    "famous": "^0.2.2",
+    "famous-polyfills": "^0.2.2"
+  }
+}
