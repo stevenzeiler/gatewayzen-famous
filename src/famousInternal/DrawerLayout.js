@@ -224,7 +224,7 @@
      * Sets the progress (between 0 and 1) for the content's displacement
      *
      * @method setProgress
-     * @param position {Number}             position
+     * @param {Number} progress
      * @param [transition] {Boolean|Object} transition definition
      * @param [callback] {Function}         callback
      */
