@@ -1,6 +1,9 @@
 View = require 'famous/core/View'
 Surface = require 'famous/core/Surface'
-HeaderFooterLayout = require 'famous/views/HeaderFooterLayout'
+DrawerLayout = require '../famousInternal/DrawerLayout'
+TouchSync = require 'famous/inputs/TouchSync'
+EBMenu = require './EBMenu'
+EBContentView = require './EBContentView'
 
 ###*
  * Top Level App Controller
@@ -10,22 +13,27 @@ HeaderFooterLayout = require 'famous/views/HeaderFooterLayout'
 class App extends View
   constructor: ->
     super
-    @layout = new HeaderFooterLayout @options.layout
-    @layout.header = new Surface
-      content: "Header"
-      properties:
-        backgroundColor: 'red'
+    layout = new DrawerLayout @options.layout
+    layout.drawer = drawer = new EBMenu
+    layout.content = content = new EBContentView
 
-    @layout.content = new Surface
-      content: "Energies Balanced"
-      properties:
-        backgroundColor: 'blue'
-    @add @layout
+    sync = new TouchSync
+      direction: TouchSync.DIRECTION_X
+
+    content.pipe sync
+    sync.pipe layout
+
+    @add layout
 
 App.DEFAULT_OPTIONS =
   layout:
-    headerSize: 60
-    footerSize: 0
+    drawerLength: 260
+    positionThreshold: 180
+    velocityThreshold: 0.1
+    transition:
+      method: "spring"
+      period: 500
+      dampingRatio: 0.6
 
 ###*
  * @exports App
