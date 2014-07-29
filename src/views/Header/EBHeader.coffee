@@ -1,17 +1,43 @@
 Surface = require 'famous/core/Surface'
-View = require '../EBView'
+EBView = require '../EBView'
+HeaderFooterLayout = require 'famous/views/HeaderFooterLayout'
+EBHeaderLogo = require './EBHeaderLogo'
 
-class EBHeader extends View
+class EBHeader extends EBView
   constructor: ->
     super
 
-    content = new Surface
-      content: "Header"
-      properties:
-        backgroundColor: 'blue'
+    #Add background surface
+    background = new Surface @options.background
+    @subscribe background
+    @add background
 
-    @add content
-    content.pipe @
-    @pipeThrough ['touchstart', 'touchmove', 'touchend']
+    #Add header footer layout for header icon nav
+    layout = new HeaderFooterLayout @options.layout
+    @add layout
+
+    #Add logo button to reveal drawer
+    layout.header = logo = new EBHeaderLogo
+    @subscribe logo
+
+    layout.content = @headerLabel = new Surface @options.label
+
+    @pipeThrough ['touchstart', 'touchmove', 'touchend', 'toggleMenu']
+
+EBHeader.DEFAULT_OPTIONS =
+  background:
+    properties:
+      backgroundColor: 'black'
+  label:
+    content: 'Energies Balanced'
+    properties:
+      color: 'white'
+  layout:
+    direction: HeaderFooterLayout.DIRECTION_X
+    headerSize: 60,
+    footerSize: 60
+
+EBHeader::setTitle = (title) ->
+  @headerLabel.setContent title
 
 module.exports = EBHeader

@@ -1,9 +1,9 @@
-View = require './EBView'
+EBView = require './EBView'
 Surface = require 'famous/core/Surface'
 EBHeader = require './Header/EBHeader'
 HeaderFooterLayout = require 'famous/views/HeaderFooterLayout'
 
-class EBContentView extends View
+class EBContentView extends EBView
   constructor: ->
     super
 
@@ -17,8 +17,8 @@ class EBContentView extends View
     @add layout
 
     # Rebroadcast touch events to DrawerLayout
-    header.pipe @
-    @pipeThrough ['touchstart', 'touchmove', 'touchend']
+    @subscribe header
+    @pipeThrough ['touchstart', 'touchmove', 'touchend', 'toggleMenu']
 
 EBContentView.DEFAULT_OPTIONS =
   layout:

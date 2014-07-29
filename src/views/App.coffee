@@ -1,4 +1,4 @@
-View = require 'famous/core/View'
+EBView = require './EBView'
 Surface = require 'famous/core/Surface'
 DrawerLayout = require '../famousInternal/DrawerLayout'
 TouchSync = require 'famous/inputs/TouchSync'
@@ -8,12 +8,12 @@ EBContentView = require './EBContentView'
 ###*
  * Top Level App Controller
  * @class App
- * @extends View
+ * @extends EBView
 ###
-class App extends View
+class App extends EBView
   constructor: ->
     super
-    layout = new DrawerLayout @options.layout
+    layout = @layout = new DrawerLayout @options.layout
     layout.drawer = drawer = new EBMenu
     layout.content = content = new EBContentView
 
@@ -24,6 +24,11 @@ class App extends View
 
     @add layout
 
+    @subscribe content
+    @subscribe drawer
+    @_eventInput.on 'toggleMenu', =>
+      layout.toggle @options.layout.transition
+
 App.DEFAULT_OPTIONS =
   layout:
     drawerLength: 260
@@ -31,7 +36,7 @@ App.DEFAULT_OPTIONS =
     velocityThreshold: 0.1
     transition:
       method: "spring"
-      period: 500
+      period: 450
       dampingRatio: 0.6
   sync:
     direction: TouchSync.DIRECTION_X
