@@ -21,6 +21,7 @@ class EBHeader extends EBView
     @subscribe logo
 
     layout.content = @headerLabel = new Surface @options.label
+    @subscribe @headerLabel
 
     @pipeThrough ['touchstart', 'touchmove', 'touchend', 'toggleMenu']
 
