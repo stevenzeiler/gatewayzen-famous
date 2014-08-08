@@ -23,7 +23,8 @@ class EBHeader extends EBView
     layout.content = @headerLabel = new Surface @options.label
     @subscribe @headerLabel
 
-    @pipeThrough ['touchstart', 'touchmove', 'touchend', 'toggleMenu']
+    @pipeThroughTouchEvents()
+    @pipeThrough "toggleMenu"
 
 EBHeader.DEFAULT_OPTIONS =
   background:

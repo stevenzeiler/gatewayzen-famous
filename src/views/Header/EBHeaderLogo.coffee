@@ -10,7 +10,7 @@ class EBHeaderLogo extends EBButton
     @content.setContent 'images/eb_logo.png'
     @contentModifier.setTransform Transform.translate(0, 0, 2)
     @subscribe @content
-    @pipeThrough ['touchstart', 'touchmove', 'touchend']
+    @pipeThroughTouchEvents()
 
     initialTime = Date.now()
     spinningWhiteThing = new Surface

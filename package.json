@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "npm run lint -s",
-    "build": "browserify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs | closure > static/bundle.js",
+    "build": "cp -R static/ Build/www/ && browserify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs | uglifyjs > Build/www/bundle.js",
     "watch": "watchify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs -o static/bundle.js --debug --verbose",
     "lint-eslint": "eslint src/",
     "lint-jscs": "jscs src/",
@@ -24,6 +24,7 @@
     "coffeeify": "^0.7.0",
     "cssify": "^0.5.1",
     "famous": "^0.2.2",
-    "famous-polyfills": "^0.2.2"
+    "famous-polyfills": "^0.2.2",
+    "superagent": "^0.18.2"
   }
 }
