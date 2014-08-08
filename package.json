@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "test": "npm run lint -s",
-    "build": "cp -R static/ Build/www/ && browserify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs | uglifyjs > Build/www/bundle.js",
-    "watch": "watchify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs -o static/bundle.js --debug --verbose",
+    "build": "cp -R static/ Build/www/ && browserify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs | closure > Build/www/bundle.js",
+    "watch": "watchify -t coffeeify --extension='.coffee' src/index.coffee -t cssify -t brfs -o Build/www/bundle.js --debug --verbose",
+    "serve": "serve --compress Build/www",
     "lint-eslint": "eslint src/",
     "lint-jscs": "jscs src/",
     "lint": "npm run lint-eslint; npm run lint-jscs"
