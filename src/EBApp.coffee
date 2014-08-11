@@ -8,8 +8,10 @@ require 'famous/inputs/FastClick'
 
 # Create context and set Perspective
 mainContext = Engine.createContext()
-mainContext.setPerspective 800
+mainContext.setPerspective 8000
 
 # Add app to the mainContext
 App = require './views/App'
-mainContext.add new App
+app = new App
+mainContext.add app
+

@@ -6,8 +6,39 @@
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-        <script type="text/javascript" src="bundle.js"></script>
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript 
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+-->
+
     </head>
-    <body></body>
+    <body>
+      <script id='rippleTradeLoginForm' type="text/template">
+        <section id='login'>
+        <h1>Login with Ripple Trade</h1>
+          <div>
+            <form>
+              <label for='rippleName'>Ripple Trade Name</label>
+              <input name='rippleName' type='text'></input>      
+              <label for='passwor'>Ripple Trade Password</label>
+              <input name='password' type='password'></input>      
+              <input class='btn btn-lrg btn-positive' type='submit' value='Login'></input>      
+            </form>
+          </div>
+        </section>
+      </script>
+      <script id='scanResult' type="text/template">
+        <section class='scanResult'>
+          <p>Scan Result: <p>
+          <h3><%= result %></h3>
+        <section>
+      </script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="bundle.js"></script>
+    </body>
 </html>

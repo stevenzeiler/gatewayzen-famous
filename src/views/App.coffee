@@ -7,6 +7,10 @@ DrawerLayout = require '../famousInternal/DrawerLayout'
 TouchSync = require 'famous/inputs/TouchSync'
 EBMenu = require './MenuDrawer/EBMenu'
 EBContentView = require './EBContentView'
+Backbone = require 'backbone'
+router = require '../Router'
+_ = require 'underscore-node'
+$ = require 'jquery'
 
 ###*
  * Top Level App Controller
@@ -17,7 +21,7 @@ class App extends EBView
   constructor: ->
     super
     layout = @layout = new DrawerLayout @options.layout
-    layout.content = content = new EBContentView
+    layout.content = @content = content = new EBContentView
     layout.drawer = drawer = new EBMenu
 
     sync = new TouchSync @options.sync
@@ -33,27 +37,60 @@ class App extends EBView
       layout.toggle @options.layout.transition
 
     addRippleTradeSurface = new Surface
-      properties: 
-        backgroundColor: 'red'
-
+      content: _.template($('#rippleTradeLoginForm').html())()
     addRippleTradeSurfaceModifier = new Modifier
       transform: Transform.translate 0, 0, 1
-  
-    addRippleTrade = new RenderNode
-      
+    @addRippleTrade = addRippleTrade = new RenderNode
     addRippleTrade
     .add addRippleTradeSurfaceModifier 
     .add addRippleTradeSurface 
-  
-    @_eventInput.on 'addRippleTradeClicked', ->
-      content.show addRippleTrade
-      layout.close()
 
-    @_eventInput.on 'scanClicked', ->
-      layout.close()
-      cordova.plugins.barcodeScanner.scan (result) ->
-        alert result
-      #content.show content.instagramList
+    scanResultSurface = @scanResultSurface  = new Surface
+    scanResultModifier = new Modifier
+      transform: Transform.translate 0, 0, 1
+    @scanResult = scanResult = new RenderNode
+    scanResult
+    .add scanResultModifier 
+    .add scanResultSurface 
+
+    router.on 'route:rippleTradeLogin', =>
+      @showRippleTradeLogin()
+
+    router.on 'route:home', =>
+      @showInstagramList()
+
+    router.on 'route:scanBarcode', =>
+      @scanQrCode()
+
+    router.on 'route:scanResult', (result) =>
+      @showScanResult result
+
+    Backbone.history.start()
+
+App::showRippleTradeLogin = ->
+  @content.content.show @addRippleTrade
+  @layout.close()
+
+App::showScanResult = (result) ->
+  templateValue = result: result
+  content = _.template($('#scanResult').html())(templateValue) 
+  @scanResultSurface.setContent content
+  @content.content.show @scanResult
+  @layout.close()
+
+App::showInstagramList = ->
+  @content.showInstagramList()
+  @layout.close()
+
+App::scanQrCode = ->
+  @layout.close()
+  onSuccessfulScan = (result) ->
+    console.log result
+    router.navigate '/scan-result/'+result.text, trigger: true
+  onScanError = (error) ->
+    console.log 'error', error
+    router.navigate '/', trigger: true
+  cordova.plugins.barcodeScanner.scan onSuccessfulScan, onScanError
 
 App.DEFAULT_OPTIONS =
   layout:

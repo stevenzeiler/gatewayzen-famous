@@ -1,5 +1,7 @@
 EBView = require './EBView'
 Surface = require 'famous/core/Surface'
+Modifier = require 'famous/core/Modifier'
+Transform = require 'famous/core/Transform'
 EBHeader = require './Header/EBHeader'
 HeaderFooterLayout = require 'famous/views/HeaderFooterLayout'
 RenderController = require 'famous/views/RenderController'
@@ -9,6 +11,11 @@ class EBContentView extends EBView
   constructor: ->
     super
 
+    contentBackground = new Surface properties: backgroundColor: '#FFC897'
+    contentBackgroundModifier = new Modifier transform: Transform.translate 0, 0, 1
+    @add contentBackgroundModifier
+    .add contentBackground
+
     layout = new HeaderFooterLayout @options.layout
     # Add content Rednerable
     layout.header = header = new EBHeader
@@ -16,6 +23,7 @@ class EBContentView extends EBView
 
     @instagramList = instagramList = new EBInstagramList
     @content.show instagramList
+
     @add layout
 
     # Rebroadcast touch events to DrawerLayout
@@ -25,6 +33,10 @@ class EBContentView extends EBView
 
   show: ->
     return @content.show.apply @content, arguments
+
+  showInstagramList: ->
+    @show @instagramList
+    
 
 EBContentView.DEFAULT_OPTIONS =
   layout:

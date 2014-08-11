@@ -20,4 +20,33 @@ body {
   margin:1em;
   padding:2em;
   border:2px solid #fff;
+  font-size: 120%;
+  color:black;
+}
+
+#login {
+  text-align:center;
+}
+
+#login label {
+  padding: 1em;
+}
+
+#login input[type='text'], input[type='password'] {
+  margin-bottom: 2em;
+  width:80%;
+  padding:1em; 
+}
+
+#login input[type='submit'] {
+  font-size:30px;
+  background-color: inherit;
+  border: 2px solid white;
+  padding:0.3em 1.5em;
+}
+
+.scanResult {
+  padding: 1em;
+  font-size: 120%;
+ 
 }

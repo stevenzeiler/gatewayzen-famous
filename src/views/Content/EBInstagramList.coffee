@@ -37,6 +37,8 @@ EBInstagramList.DEFAULT_OPTIONS =
   scroll:
     clipSize: 600
     margin: 600
+    direction: 1
+    paginated: true
 
 EBInstagramList::getImages = ->
   $.get 'https://s3-us-west-2.amazonaws.com/com.adamcmiel.energiesbalanced/eb_instagram_feed.json'
@@ -46,7 +48,19 @@ EBInstagramList::getImages = ->
 
 EBInstagramList::addImages = (data) ->
   console.log "Adding Images, API Version: #{data.api_version}"
-  (@addImage imageURL for imageURL in data.images)
+  images = [
+    'images/au.jpg'
+    'images/bitcoin.jpg'
+    'images/euro.png'
+    'images/yuan.jpeg'
+    'images/dollar.jpeg'
+    'images/real.jpg'
+    'images/yen.png'
+    'images/dogecoin.png'
+    'images/ag.jpeg'
+    'images/pesos_mexicanos.jpeg'
+  ]
+  (@addImage imageURL for imageURL in images)
 
 EBInstagramList::addImage = (url) ->
   image = new EBInstagramListItem url
