@@ -1,5 +1,6 @@
 EBView = require '../EBView'
 ScrollView = require 'famous/views/ScrollView'
+Surface = require 'famous/core/Surface'
 ImageSurface = require 'famous/surfaces/ImageSurface'
 Modifier = require 'famous/core/Modifier'
 Transform = require 'famous/core/Transform'
@@ -11,9 +12,21 @@ class EBInstagramList extends EBView
   constructor: ->
     super
     console.log 'creating new instagram view'
+
+    background = new Surface
+      properties:
+        backgroundColor: '#FFC897'
+      classes: ['main-background']
+
+    backgroundModifier = new Modifier
+      transform: Transform.translate 0, 0, 1
+
+    @add backgroundModifier
+    .add background
+    
     @scrollView = new ScrollView @options.scroll
     scrollViewPositioningModifier = new Modifier
-      transform: Transform.translate 0, 7.5, 1
+      transform: Transform.translate 0, 7.5, 2
     @images = []
     @scrollView.sequenceFrom @images
     @add scrollViewPositioningModifier

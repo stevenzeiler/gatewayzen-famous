@@ -1,21 +1,22 @@
 EBButton = require '../EBButton'
 Transform = require 'famous/core/Transform'
 Surface = require 'famous/core/Surface'
+ImageSurface = require 'famous/surfaces/ImageSurface'
 Modifier = require 'famous/core/Modifier'
 
 class EBHeaderLogo extends EBButton
   constructor: ->
     super
 
-    @content.setContent 'images/eb_logo.png'
+    @content.setContent null
     @contentModifier.setTransform Transform.translate(0, 0, 2)
     @subscribe @content
     @pipeThroughTouchEvents()
 
     initialTime = Date.now()
-    spinningWhiteThing = new Surface
-      properties:
-        backgroundColor: 'white'
+    spinningRipple = new ImageSurface
+    spinningRipple.setContent 'images/ripple-triskelion.png'
+
     spinner = new Modifier
       size: [40, 40]
       origin: [0.5, 0.5]
@@ -23,13 +24,11 @@ class EBHeaderLogo extends EBButton
         Transform.rotateZ 0.0005 * (Date.now() - initialTime)
 
     @add spinner
-    .add spinningWhiteThing
+    .add spinningRipple
 
 EBHeaderLogo.DEFAULT_OPTIONS =
-  ImageSurface: yes
+  ImageSurface: no
   classes: ['eb-header-logo']
   eventName: 'toggleMenu'
-  properties:
-    padding: '10px'
 
 module.exports = EBHeaderLogo

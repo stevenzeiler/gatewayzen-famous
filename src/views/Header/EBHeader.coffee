@@ -29,11 +29,12 @@ class EBHeader extends EBView
 EBHeader.DEFAULT_OPTIONS =
   background:
     properties:
-      backgroundColor: 'black'
+      backgroundColor: '#A61C15'
   label:
-    content: 'Energies Balanced'
+    content: '<p style="margin:10px 0px 0px 20px">Gateway Zen</p>'
     properties:
       color: 'white'
+      fontSize: '25px'
   layout:
     direction: HeaderFooterLayout.DIRECTION_X
     headerSize: 60,

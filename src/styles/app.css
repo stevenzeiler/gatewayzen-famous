@@ -6,3 +6,18 @@ html {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
 }
+
+.header-background {
+  background-color: '#17428B';
+}
+
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+}
+
+.menu-item-button {
+  margin:1em;
+  padding:2em;
+  border:2px solid #fff;
+}

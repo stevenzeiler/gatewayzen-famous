@@ -12,16 +12,19 @@ class EBContentView extends EBView
     layout = new HeaderFooterLayout @options.layout
     # Add content Rednerable
     layout.header = header = new EBHeader
-    layout.content = content = new RenderController @options.renderController
+    layout.content = @content = content = new RenderController @options.renderController
 
-    instagramList = new EBInstagramList
-    content.show instagramList
+    @instagramList = instagramList = new EBInstagramList
+    @content.show instagramList
     @add layout
 
     # Rebroadcast touch events to DrawerLayout
     @subscribe header
     @pipeThroughTouchEvents()
     @pipeThrough "toggleMenu"
+
+  show: ->
+    return @content.show.apply @content, arguments
 
 EBContentView.DEFAULT_OPTIONS =
   layout:
