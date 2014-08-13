@@ -32,7 +32,7 @@ body {
   padding: 1em;
 }
 
-#login input[type='text'], input[type='password'] {
+input[type='number'], input[type='text'], input[type='password'], input {
   margin-bottom: 2em;
   width:80%;
   padding:1em; 
@@ -50,3 +50,4 @@ body {
   font-size: 120%;
  
 }
+

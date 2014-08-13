@@ -73,7 +73,8 @@ App::showRippleTradeLogin = ->
 
 App::showScanResult = (result) ->
   templateValue = result: result
-  content = _.template($('#scanResult').html())(templateValue) 
+  #content = _.template($('#scanResult').html())(templateValue) 
+  content = _.template($('#sendXrpForm').html())(templateValue) 
   @scanResultSurface.setContent content
   @content.content.show @scanResult
   @layout.close()
